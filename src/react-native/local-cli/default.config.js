@@ -12,15 +12,15 @@ var path = require('path');
  */
 var config = {
   getProjectRoots() {
-    // @丹侠 这里需要更改目录
-    if (__dirname.match(/src[\/\\]react-native[\/\\]local-cli$/)) {
+    if (__dirname.match(/node_modules[\/\\]react-native[\/\\]local-cli$/)) {
       // packager is running from node_modules of another project
       return [path.resolve(__dirname, '../../..')];
     } else if (__dirname.match(/Pods[\/\\]React[\/\\]packager$/)) {
       // packager is running from node_modules of another project
       return [path.resolve(__dirname, '../../..')];
     } else {
-      return [path.resolve(__dirname, '..')];
+      // @丹侠 返回执行脚本的当前目录
+      return [process.cwd()];
     }
   },
 
