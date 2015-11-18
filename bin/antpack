@@ -3,4 +3,17 @@
 
 'use strict';
 
-console.log('antpack');
+var path = require('path');
+
+var CLI_MODULE_PATH = function() {
+  return path.resolve(
+    process.cwd(),
+    'src',
+    'react-native',
+    'cli.js'
+  );
+};
+
+var cliPath = CLI_MODULE_PATH();
+var cli = require(cliPath);
+cli.run();

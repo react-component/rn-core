@@ -7,9 +7,7 @@
 
 'use strict';
 
-var bundle = function (){
-  console.log('bundle!');
-};
+var bundle = require('react-native/private-cli/src/bundle/bundle');
 
 module.exports = {
   bundle: bundle
