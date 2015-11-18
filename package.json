@@ -1,0 +1,17 @@
+{
+  "name": "@alipay/antpack",
+  "version": "0.0.1",
+  "description": "基于Facebook的开发套件",
+  "main": "scr/index.js",
+  "bin": {
+    "antpack": "bin/antpack"
+  },
+  "author": "丹侠 <danxia.shidx@alipay.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-native": "0.14.2"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  }
+}
