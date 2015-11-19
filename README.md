@@ -8,19 +8,32 @@ $ tnpm install @alipay/antpack -g
 ```
 
 2. 项目依赖配置
-```
+
+    在rn工程项目`package.json`中配置后执行`tnpm install`
+    ```
 "devDependencies": {
       "@alipay/antpack": "~0.0.1"
 }
 ```
-`tnpm install`
 
 3. 打包命令
-```
+> 在项目工程根目录下执行打包命令
+
+    ```
 $ antpack bundle --entry-file  entry/file/path.js --bundle-output out/file/path.jsbundle --platform ios
 ```
-新增参数: `--include-framework`: 是否把`react-native`框架及polyfill代码打包进去，默认`false`。
-加 --dev false 参数打release包
+    Options:
+    *  --entry-file         Path to the root JS file, either absolute or relative to JS root                       [required]
+    *  --platform           Either "ios" or "android"                                                              [required]
+    *  --include-framework  Whether to bundle include module `react-native` and polyfills                          [default: false]
+    *  --transformer        Specify a custom transformer to be used (absolute path)                                [default: "/Users/Denis/.nvm/versions/node/v5.0.0/lib/node_modules/@alipay/antpack/src/react-native/packager/transformer.js"]  
+    *  --dev                If false, warnings are disabled and the bundle is minified                             [default: true]
+    *  --bundle-output      File name where to store the resulting bundle, ex. /tmp/groups.bundle                  [required]
+    *  --sourcemap-output   File name where to store the sourcemap file for resulting bundle, ex. /tmp/groups.map
+    *  --assets-dest        Directory name where to store assets referenced in the bundle
+    *  --verbose            Enables logging                                                                        [default: false]
+    
+    新增参数: `--include-framework`: 是否把`react-native`框架及polyfill代码打包进去，默认`false`
 
 4. http服务命令
 ```
