@@ -17,7 +17,7 @@ $ tnpm install @alipay/antpack -g
 
 3. 打包命令
 ```
-$ antpack bundle --entry-file  entry/file/path.js --bundle-output out/file/path.jsbundle --platform ios/android
+$ antpack bundle --entry-file  entry/file/path.js --bundle-output out/file/path.jsbundle --platform ios
 ```
 新增参数: `--include-framework`: 是否把`react-native`框架及polyfill代码打包进去，默认`false`
 
