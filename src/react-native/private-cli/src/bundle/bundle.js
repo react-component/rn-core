@@ -25,11 +25,11 @@ function bundle(argv, config) {
     var args = ['bundle'];
     for(var key in argv) {
       args.push(key);
-      args.push(argv[key]);
+      args.push(argv[key].toString());
     }
     argv = args;
     config = Config.get(__dirname, defaultConfig);
-  }
+  }console.log(argv);
   return buildBundle(parseCommandLine(bundleCommandLineArgs, argv), config);
 }
 

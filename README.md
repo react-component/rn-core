@@ -10,7 +10,7 @@ $ tnpm install @alipay/antpack -g
 2. 项目依赖配置
 ```
 "devDependencies": {
-  "@alipay/antpack": "^0.0.7"
+  "@alipay/antpack": "~0.0.1"
 }
 ```
 `tnpm install`
