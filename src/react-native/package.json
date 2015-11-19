@@ -1,8 +1,7 @@
 {
   "_args": [
     [
-      "react-native",
-      "/Users/Denis/Development/RN142"
+      "react-native"
     ]
   ],
   "_from": "react-native@*",
@@ -31,7 +30,6 @@
   "_shasum": "6d640633f27a01b64256cafaa3110c4381a2e0d7",
   "_shrinkwrap": null,
   "_spec": "react-native",
-  "_where": "/Users/Denis/Development/RN142",
   "bugs": {
     "url": "https://github.com/facebook/react-native/issues"
   },

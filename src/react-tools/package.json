@@ -2,7 +2,6 @@
   "_args": [
     [
       "react-tools@github:facebook/react#b4e74e3",
-      "/Users/Denis/Development/RN142/node_modules/react-native"
     ]
   ],
   "_from": "facebook/react#b4e74e3",
@@ -34,7 +33,6 @@
   "_shasum": "7124fe4a2c93278544e25b3b86a3b968bcecbed8",
   "_shrinkwrap": null,
   "_spec": "react-tools@github:facebook/react#b4e74e3",
-  "_where": "/Users/Denis/Development/RN142/node_modules/react-native",
   "bin": {
     "jsx": "./bin/jsx"
   },
