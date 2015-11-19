@@ -29,7 +29,7 @@ function bundle(argv, config) {
     }
     argv = args;
     config = Config.get(__dirname, defaultConfig);
-  }console.log(argv);
+  }
   return buildBundle(parseCommandLine(bundleCommandLineArgs, argv), config);
 }
 
