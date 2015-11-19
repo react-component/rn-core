@@ -26,3 +26,16 @@ $ antpack bundle --entry-file  entry/file/path.js --bundle-output out/file/path.
 $ antpack start
 ```
 url新增请求参数`framework=true`: 是否把`react-native`框架及polyfill代码打包进去，默认`false`
+
+5. 集成构建
+```
+var antPack = require('@alipay/antpack');
+...
+gulp.task('task', function(){
+  return antPack.bundle({
+    "--entry-file": "tests/index.ios.js",
+    "--bundle-output": "tests/index.ios.bundle",
+    "--platform": "ios"
+  });
+});
+```
