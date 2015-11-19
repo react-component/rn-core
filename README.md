@@ -10,7 +10,7 @@ $ tnpm install @alipay/antpack -g
 2. 项目依赖配置
 ```
 "devDependencies": {
-  "@alipay/antpack": "~0.0.1"
+      "@alipay/antpack": "~0.0.1"
 }
 ```
 `tnpm install`
@@ -32,10 +32,10 @@ url新增请求参数`framework=true`: 是否把`react-native`框架及polyfill�
 var antPack = require('@alipay/antpack');
 ...
 gulp.task('task', function(){
-  return antPack.bundle({
-    "--entry-file": "tests/index.ios.js",
-    "--bundle-output": "tests/index.ios.bundle",
-    "--platform": "ios"
-  });
+      return antPack.bundle({
+        "--entry-file": "tests/index.ios.js",
+        "--bundle-output": "tests/index.ios.bundle",
+        "--platform": "ios"
+      });
 });
 ```
