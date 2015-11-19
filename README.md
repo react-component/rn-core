@@ -1,6 +1,5 @@
 ## 基于Facebook的开发套件
-
-不打包框架代码，基于官方`0.14.2`
+> 基于官方`0.14.2`
 
 1. 全局安装打包工具
 ```
@@ -17,7 +16,7 @@ $ tnpm install @alipay/antpack -g
 ```
 
 3. 打包命令
-> 在项目工程根目录下执行打包命令
+> 在项目工程根目录下执行打包命令，默认不打包框架代码及polyfills
 
     ```
 $ antpack bundle --entry-file  entry/file/path.js --bundle-output out/file/path.jsbundle --platform ios
