@@ -19,8 +19,8 @@ var config = {
       // packager is running from node_modules of another project
       return [path.resolve(__dirname, '../../..')];
     } else {
-      // @丹侠 返回执行脚本的当前目录
-      return [process.cwd()];
+      // @丹侠 增加当前执行目录为项目根目录
+      return [process.cwd(), path.resolve(__dirname, '..')];
     }
   },
 

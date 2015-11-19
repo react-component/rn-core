@@ -13,7 +13,7 @@ var path = require('path');
 // Don't forget to everything listed here to `testConfig.json`
 // modulePathIgnorePatterns.
 var sharedBlacklist = [
-  // @丹侠 修改和名单文件路径
+  // @丹侠 修改黑名单文件路径
   'src/react-tools/src/React.js',
   'src/react-tools/src/renderers/shared/event/EventPropagators.js',
   'src/react-tools/src/renderers/shared/event/eventPlugins/ResponderEventPlugin.js',

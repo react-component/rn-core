@@ -1,6 +1,6 @@
 {
   "name": "@alipay/antpack",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "基于Facebook的开发套件",
   "main": "src/index.js",
   "bin": {
