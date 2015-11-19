@@ -20,7 +20,7 @@ var config = {
       return [path.resolve(__dirname, '../../..')];
     } else {
       // @丹侠 增加当前执行目录为项目根目录
-      return [process.cwd(), path.resolve(__dirname, '..')];
+      return [process.cwd()];
     }
   },
 
