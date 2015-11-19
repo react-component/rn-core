@@ -19,7 +19,11 @@ module.exports = [
     description: 'Either "ios" or "android"',
     type: 'string',
     required: true,
-  }, {
+  }, {  // @丹侠 是否集成框架
+    command: 'include-framework',
+    description: 'Whether to bundle include module `react-native` and polyfills',
+    default: false,
+  }, {       
     command: 'transformer',
     description: 'Specify a custom transformer to be used (absolute path)',
     type: 'string',
@@ -41,7 +45,7 @@ module.exports = [
     command: 'assets-dest',
     description: 'Directory name where to store assets referenced in the bundle',
     type: 'string',
-  }, {
+  }, { 
     command: 'verbose',
     description: 'Enables logging',
     default: false,

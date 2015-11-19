@@ -86,8 +86,8 @@ var getDependenciesValidateOpts = declareOpts({
 
 HasteDependencyResolver.prototype.getDependencies = function(main, options) {
   var opts = getDependenciesValidateOpts(options);
-
-  return this._depGraph.getDependencies(main, opts.platform).then(
+  // @丹侠
+  return this._depGraph.getDependencies(main, opts.platform, opts.includeFramework).then(
     resolutionResponse => {
       // @丹侠
       this._getPolyfillDependencies(opts.dev, opts.includeFramework).reverse().forEach(

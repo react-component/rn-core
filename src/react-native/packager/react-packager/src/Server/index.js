@@ -93,7 +93,12 @@ const bundleOpts = declareOpts({
   platform: {
     type: 'string',
     required: true,
-  }
+  },
+  // @丹侠
+  includeFramework: {
+    type: 'boolean',
+    default: false,
+  },
 });
 
 const dependencyOpts = declareOpts({
@@ -108,6 +113,11 @@ const dependencyOpts = declareOpts({
   entryFile: {
     type: 'string',
     required: true,
+  },
+  // @丹侠
+  includeFramework: {
+    type: 'boolean',
+    default: false,
   },
 });
 
@@ -179,7 +189,8 @@ class Server {
         opts.runModule,
         opts.sourceMapUrl,
         opts.dev,
-        opts.platform
+        opts.platform,
+        opts.includeFramework,  // @丹侠
       );
     });
   }
@@ -196,6 +207,7 @@ class Server {
         opts.entryFile,
         opts.dev,
         opts.platform,
+        opts.includeFramework,  // @丹侠
       );
     });
   }
@@ -444,6 +456,7 @@ class Server {
         false
       ),
       platform: urlObj.query.platform,
+      includeFramework: this._getBoolOptionFromQuery(urlObj.query, 'framework'),  // @丹侠
     };
   }
 

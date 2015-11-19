@@ -132,12 +132,12 @@ class Bundler {
     return this._bundlesLayout.generateLayout(main, isDev);
   }
 
-  bundle(main, runModule, sourceMapUrl, isDev, platform) {
+  bundle(main, runModule, sourceMapUrl, isDev, platform, includeFramework) {
     const bundle = new Bundle(sourceMapUrl);
     const findEventId = Activity.startEvent('find dependencies');
     let transformEventId;
 
-    return this.getDependencies(main, isDev, platform).then((response) => {
+    return this.getDependencies(main, isDev, platform, includeFramework).then((response) => {
       Activity.endEvent(findEventId);
       transformEventId = Activity.startEvent('transform');
 
@@ -182,13 +182,13 @@ class Bundler {
   invalidateFile(filePath) {
     this._transformer.invalidateFile(filePath);
   }
-
-  getDependencies(main, isDev, platform) {
-    return this._resolver.getDependencies(main, { dev: isDev, platform });
+  // @丹侠
+  getDependencies(main, isDev, platform, includeFramework) {
+    return this._resolver.getDependencies(main, { dev: isDev, platform, includeFramework });
   }
-
-  getOrderedDependencyPaths({ entryFile, dev, platform }) {
-    return this.getDependencies(entryFile, dev, platform).then(
+  // @丹侠
+  getOrderedDependencyPaths({ entryFile, dev, platform, includeFramework }) {
+    return this.getDependencies(entryFile, dev, platform, includeFramework).then(
       ({ dependencies }) => {
         const ret = [];
         const promises = [];

@@ -34,6 +34,7 @@ function buildBundle(args, config) {
       dev: args.dev,
       minify: !args.dev,
       platform: args.platform,
+      includeFramework: args['include-framework'],  // @丹侠
     };
 
     resolve(ReactPackager.createClientFor(options).then(client => {

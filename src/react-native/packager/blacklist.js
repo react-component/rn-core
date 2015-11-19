@@ -13,12 +13,13 @@ var path = require('path');
 // Don't forget to everything listed here to `testConfig.json`
 // modulePathIgnorePatterns.
 var sharedBlacklist = [
-  'node_modules/react-tools/src/React.js',
-  'node_modules/react-tools/src/renderers/shared/event/EventPropagators.js',
-  'node_modules/react-tools/src/renderers/shared/event/eventPlugins/ResponderEventPlugin.js',
-  'node_modules/react-tools/src/shared/vendor/core/ExecutionEnvironment.js',
-  'node_modules/react-tools/docs/js/react.js',
-  'node_modules/react-tools/src/package.json',  
+  // @丹侠 修改和名单文件路径
+  'src/react-tools/src/React.js',
+  'src/react-tools/src/renderers/shared/event/EventPropagators.js',
+  'src/react-tools/src/renderers/shared/event/eventPlugins/ResponderEventPlugin.js',
+  'src/react-tools/src/shared/vendor/core/ExecutionEnvironment.js',
+  'src/react-tools/docs/js/react.js',
+  'src/react-tools/src/package.json',  
 
   // Those conflicts with the ones in react-tools/. We need to blacklist the
   // internal version otherwise they won't work in open source.
