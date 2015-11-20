@@ -92,7 +92,7 @@ function generateWrapper(args, config) {
 
 function printUsage() {
   console.log([
-    'Usage: react-native <command>',
+    'Usage: antpack <command>', // @丹侠
     '',
     'Commands:'
   ].concat(Object.keys(documentedCommands).map(function(name) {
