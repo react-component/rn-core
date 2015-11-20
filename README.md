@@ -25,7 +25,7 @@ $ antpack bundle --entry-file  entry/file/path.js --bundle-output out/file/path.
     *  --entry-file         Path to the root JS file, either absolute or relative to JS root                       [required]
     *  --platform           Either "ios" or "android"                                                              [required]
     *  --include-framework  Whether to bundle include module `react-native` and polyfills                          [default: false]
-    *  --transformer        Specify a custom transformer to be used (absolute path)                                [default: "/Users/Denis/.nvm/versions/node/v5.0.0/lib/node_modules/@alipay/antpack/src/react-native/packager/transformer.js"]  
+    *  --transformer        Specify a custom transformer to be used (absolute path)                                
     *  --dev                If false, warnings are disabled and the bundle is minified                             [default: true]
     *  --bundle-output      File name where to store the resulting bundle, ex. /tmp/groups.bundle                  [required]
     *  --sourcemap-output   File name where to store the sourcemap file for resulting bundle, ex. /tmp/groups.map
