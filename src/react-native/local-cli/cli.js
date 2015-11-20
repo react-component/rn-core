@@ -31,12 +31,24 @@ var upgrade = require('../private-cli/src/upgrade/upgrade');
 var documentedCommands = {
   'start': [server, 'starts the webserver'],
   'bundle': [bundle, 'builds the javascript bundle for offline use'],
-  'new-library': [library, 'generates a native library bridge'],
-  'android': [generateWrapper, 'generates an Android project for your app'],
-  'run-android': [runAndroid, 'builds your app and starts it on a connected Android emulator or device'],
-  'upgrade': [upgrade, 'upgrade your app\'s template files to the latest version; run this after ' +
-                       'updating the react-native version in your package.json and running npm install']
+  'version': [versionInfo, 'print antpack version']
+  // @丹侠 暂不支持下面的功能
+  // 'new-library': [library, 'generates a native library bridge'],
+  // 'android': [generateWrapper, 'generates an Android project for your app'],
+  // 'run-android': [runAndroid, 'builds your app and starts it on a connected Android emulator or device'],
+  // 'upgrade': [upgrade, 'upgrade your app\'s template files to the latest version; run this after ' +
+  //                      'updating the react-native version in your package.json and running npm install']
 };
+// @丹侠
+function versionInfo() {
+  return new Promise((resolve, reject) => {
+    var version = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '../../../package.json'), 'utf8')
+    ).version;
+    console.log(version);
+    resolve();
+  });
+}
 
 var undocumentedCommands = {
   'init': [printInitWarning, ''],
