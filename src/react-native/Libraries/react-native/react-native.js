@@ -7,6 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @flow
+ * @丹侠 定制网商银行的的react-native
  */
 'use strict';
 
@@ -19,51 +20,51 @@
 //
 var ReactNative = Object.assign(Object.create(require('React')), {
   // Components
-  ActivityIndicatorIOS: require('ActivityIndicatorIOS'),
-  DatePickerIOS: require('DatePickerIOS'),
-  DrawerLayoutAndroid: require('DrawerLayoutAndroid'),
+  // ActivityIndicatorIOS: require('ActivityIndicatorIOS'),
+  // DatePickerIOS: require('DatePickerIOS'),
+  // DrawerLayoutAndroid: require('DrawerLayoutAndroid'),
   Image: require('Image'),
   ListView: require('ListView'),
-  MapView: require('MapView'),
+  // MapView: require('MapView'),
   Modal: require('Modal'),
-  Navigator: require('Navigator'),
-  NavigatorIOS: require('NavigatorIOS'),
-  PickerIOS: require('PickerIOS'),
-  ProgressBarAndroid: require('ProgressBarAndroid'),
-  ProgressViewIOS: require('ProgressViewIOS'),
+  // Navigator: require('Navigator'),
+  // NavigatorIOS: require('NavigatorIOS'),
+  // PickerIOS: require('PickerIOS'),
+  // ProgressBarAndroid: require('ProgressBarAndroid'),
+  // ProgressViewIOS: require('ProgressViewIOS'),
   ScrollView: require('ScrollView'),
-  SegmentedControlIOS: require('SegmentedControlIOS'),
-  SliderIOS: require('SliderIOS'),
-  SnapshotViewIOS: require('SnapshotViewIOS'),
-  Switch: require('Switch'),
-  SwitchAndroid: require('SwitchAndroid'),
-  SwitchIOS: require('SwitchIOS'),
-  TabBarIOS: require('TabBarIOS'),
+  // SegmentedControlIOS: require('SegmentedControlIOS'),
+  // SliderIOS: require('SliderIOS'),
+  // SnapshotViewIOS: require('SnapshotViewIOS'),
+  // Switch: require('Switch'),
+  // SwitchAndroid: require('SwitchAndroid'),
+  // SwitchIOS: require('SwitchIOS'),
+  // TabBarIOS: require('TabBarIOS'),
   Text: require('Text'),
   TextInput: require('TextInput'),
-  ToastAndroid: require('ToastAndroid'),
-  ToolbarAndroid: require('ToolbarAndroid'),
+  // ToastAndroid: require('ToastAndroid'),
+  // ToolbarAndroid: require('ToolbarAndroid'),
   TouchableHighlight: require('TouchableHighlight'),
   TouchableNativeFeedback: require('TouchableNativeFeedback'),
   TouchableOpacity: require('TouchableOpacity'),
   TouchableWithoutFeedback: require('TouchableWithoutFeedback'),
   View: require('View'),
-  ViewPagerAndroid: require('ViewPagerAndroid'),
-  WebView: require('WebView'),
+  // ViewPagerAndroid: require('ViewPagerAndroid'),
+  // WebView: require('WebView'),
 
   // APIs
-  ActionSheetIOS: require('ActionSheetIOS'),
-  AdSupportIOS: require('AdSupportIOS'),
+  // ActionSheetIOS: require('ActionSheetIOS'),
+  // AdSupportIOS: require('AdSupportIOS'),
   AlertIOS: require('AlertIOS'),
   Animated: require('Animated'),
   AppRegistry: require('AppRegistry'),
   AppStateIOS: require('AppStateIOS'),
   AsyncStorage: require('AsyncStorage'),
-  BackAndroid: require('BackAndroid'),
-  CameraRoll: require('CameraRoll'),
+  // BackAndroid: require('BackAndroid'),
+  // CameraRoll: require('CameraRoll'),
   Dimensions: require('Dimensions'),
   Easing: require('Easing'),
-  ImagePickerIOS: require('ImagePickerIOS'),
+  // ImagePickerIOS: require('ImagePickerIOS'),
   InteractionManager: require('InteractionManager'),
   LayoutAnimation: require('LayoutAnimation'),
   LinkingIOS: require('LinkingIOS'),
@@ -72,9 +73,9 @@ var ReactNative = Object.assign(Object.create(require('React')), {
   PixelRatio: require('PixelRatio'),
   PushNotificationIOS: require('PushNotificationIOS'),
   Settings: require('Settings'),
-  StatusBarIOS: require('StatusBarIOS'),
+  // StatusBarIOS: require('StatusBarIOS'),
   StyleSheet: require('StyleSheet'),
-  VibrationIOS: require('VibrationIOS'),
+  // VibrationIOS: require('VibrationIOS'),
 
   // Plugins
   DeviceEventEmitter: require('RCTDeviceEventEmitter'),
@@ -100,6 +101,8 @@ var ReactNative = Object.assign(Object.create(require('React')), {
     createFragment: require('ReactFragment').create,
     update: require('update'),
   },
+  // 网商银行
+  Bank: require('../Bank')
 });
 
 if (__DEV__) {
