@@ -1,46 +1,12 @@
 {
-  "name": "@alipay/antpack",
-  "version": "0.0.17",
-  "description": "基于Facebook的开发套件",
-  "main": "src/index.js",
-  "bin": {
-    "antpack": "bin/antpack"
-  },
+  "name": "@alipay/react-native-mb",
+  "version": "0.0.1",
+  "description": "银行的react-native基础库",
   "author": "丹侠 <danxia.shidx@alipay.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@gitlab.alibaba-inc.com:animajs-rn/antpack.git"
-  },
-  "dependencies": {
-    "absolute-path": "^0.0.0",
-    "babel-core": "^5.8.23",
-    "bser": "^1.0.2",
-    "chalk": "^1.1.1",
-    "connect": "^2.8.3",
-    "debug": "^2.2.0",
-    "event-target-shim": "^1.0.5",
-    "fbjs-scripts": "^0.2.1",
-    "graceful-fs": "^4.1.2",
-    "image-size": "^0.3.5",
-    "immutable": "^3.7.5",
-    "joi": "^6.6.1",
-    "node-fetch": "^1.3.3",
-    "optimist": "^0.6.1",
-    "progress": "^1.1.8",
-    "promise": "^7.0.4",
-    "react-timer-mixin": "^0.13.2",
-    "rebound": "^0.0.13",
-    "regenerator": "^0.8.36",
-    "sane": "^1.2.0",
-    "semver": "^5.0.1",
-    "stacktrace-parser": "^0.1.3",
-    "uglify-js": "^2.4.24",
-    "underscore": "^1.8.3",
-    "wordwrap": "^1.0.0",
-    "worker-farm": "^1.3.1",
-    "ws": "^0.8.0",
-    "yeoman-environment": "^1.2.7"
   },
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"

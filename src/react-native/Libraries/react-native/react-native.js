@@ -68,10 +68,10 @@ var ReactNative = Object.assign(Object.create(require('React')), {
   InteractionManager: require('InteractionManager'),
   LayoutAnimation: require('LayoutAnimation'),
   LinkingIOS: require('LinkingIOS'),
-  NetInfo: require('NetInfo'),
+  // NetInfo: require('NetInfo'),
   PanResponder: require('PanResponder'),
   PixelRatio: require('PixelRatio'),
-  PushNotificationIOS: require('PushNotificationIOS'),
+  // PushNotificationIOS: require('PushNotificationIOS'),
   Settings: require('Settings'),
   // StatusBarIOS: require('StatusBarIOS'),
   StyleSheet: require('StyleSheet'),
@@ -94,15 +94,13 @@ var ReactNative = Object.assign(Object.create(require('React')), {
     LinkedStateMixin: require('LinkedStateMixin'),
     Perf: undefined,
     PureRenderMixin: require('ReactComponentWithPureRenderMixin'),
-    TestModule: require('NativeModules').TestModule,
-    TestUtils: undefined,
+    // TestModule: require('NativeModules').TestModule,
+    // TestUtils: undefined,
     batchedUpdates: require('ReactUpdates').batchedUpdates,
     cloneWithProps: require('cloneWithProps'),
     createFragment: require('ReactFragment').create,
     update: require('update'),
-  },
-  // 网商银行
-  Bank: require('../Bank')
+  }
 });
 
 if (__DEV__) {
