@@ -38,6 +38,10 @@ var AppContainer = React.createClass({
   },
 
   componentDidMount: function() {
+    // @AntReactNative 发送一个DomReady事件
+    // BEGIN
+    window.Ali && Ali._domReady();
+    // END
     this.addListenerOn(
       RCTDeviceEventEmitter,
       'toggleElementInspector',
