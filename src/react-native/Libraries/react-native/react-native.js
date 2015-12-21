@@ -22,13 +22,13 @@ var ReactNative = Object.assign(Object.create(require('React')), {
   // Components
   ActivityIndicatorIOS: require('ActivityIndicatorIOS'),
   DatePickerIOS: require('DatePickerIOS'),
-  // DrawerLayoutAndroid: require('DrawerLayoutAndroid'),
+  DrawerLayoutAndroid: require('DrawerLayoutAndroid'),
   Image: require('Image'),
   ListView: require('ListView'),
   // MapView: require('MapView'),
   Modal: require('Modal'),
-  Navigator: require('Navigator'),
-  NavigatorIOS: require('NavigatorIOS'),
+  // Navigator: require('Navigator'),
+  // NavigatorIOS: require('NavigatorIOS'),
   PickerIOS: require('PickerIOS'),
   ProgressBarAndroid: require('ProgressBarAndroid'),
   ProgressViewIOS: require('ProgressViewIOS'),
@@ -37,7 +37,7 @@ var ReactNative = Object.assign(Object.create(require('React')), {
   SliderIOS: require('SliderIOS'),
   SnapshotViewIOS: require('SnapshotViewIOS'),
   Switch: require('Switch'),
-  // SwitchAndroid: require('SwitchAndroid'),
+  SwitchAndroid: require('SwitchAndroid'),
   SwitchIOS: require('SwitchIOS'),
   TabBarIOS: require('TabBarIOS'),
   Text: require('Text'),
@@ -50,7 +50,7 @@ var ReactNative = Object.assign(Object.create(require('React')), {
   TouchableOpacity: require('TouchableOpacity'),
   TouchableWithoutFeedback: require('TouchableWithoutFeedback'),
   View: require('View'),
-  // ViewPagerAndroid: require('ViewPagerAndroid'),
+  ViewPagerAndroid: require('ViewPagerAndroid'),
   // WebView: require('WebView'),
 
   // APIs
@@ -93,10 +93,10 @@ var ReactNative = Object.assign(Object.create(require('React')), {
   // See http://facebook.github.io/react/docs/addons.html
   addons: {
     LinkedStateMixin: require('LinkedStateMixin'),
-    // Perf: undefined,
+    Perf: undefined,
     PureRenderMixin: require('ReactComponentWithPureRenderMixin'),
-    // TestModule: require('NativeModules').TestModule,
-    // TestUtils: undefined,
+    TestModule: require('NativeModules').TestModule,
+    TestUtils: undefined,
     batchedUpdates: require('ReactUpdates').batchedUpdates,
     cloneWithProps: require('cloneWithProps'),
     createFragment: require('ReactFragment').create,

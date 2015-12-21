@@ -1,5 +1,9 @@
-## 网商银行的react-native基础库
+# 蚂蚁金服定制的react-native
 
-```
-react-native bundle --entry-file src/react-native/Libraries/react-native/react-native.js --bundle-output dist/react-native.js --platform ios --include-framework
-```
+当前版本基于react-native 0.14.2
+
+## environment
+
+[node-image]: https://img.shields.io/badge/node.js-%3E=_4.0.0-green.svg?style=flat-square
+[react-native]: https://img.shields.io/badge/react--native-%3D_0.14.2-green.svg
+
