@@ -1,6 +1,6 @@
 {
   "name": "rmc-react-native",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "react-native SDK, 基于react-native 1.4.2",
   "author": "Swain <swainet@126.com>",
   "license": "MIT",
