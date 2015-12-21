@@ -1,6 +1,6 @@
-# 蚂蚁金服定制的react-native
+# react-native
 
-当前版本基于react-native 0.14.2
+当前版本基于react-native 0.14.2 抽取必要的依赖SDK源码
 
 ## environment
 
