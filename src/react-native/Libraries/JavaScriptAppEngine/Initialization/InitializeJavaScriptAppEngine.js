@@ -32,12 +32,10 @@ if (typeof window === 'undefined') {
   window = GLOBAL;
 }
 
-function handleError(e, isFatal) {
-  try {
-    require('ExceptionsManager').handleException(e, isFatal);
-  } catch(ee) {
-    console.log('Failed to print error: ', ee.message);
-  }
+function setUpConsole() {
+  // ExceptionsManager transitively requires Promise so we install it after
+  var ExceptionsManager = require('ExceptionsManager');
+  ExceptionsManager.installConsoleErrorReporter();
 }
 
 /**
@@ -55,7 +53,7 @@ function handleError(e, isFatal) {
  * For more info on that particular case, see:
  * https://github.com/facebook/react-native/issues/934
  */
-function polyfillGlobal(name, newValue, scope=GLOBAL) {
+function polyfillGlobal(name, newValue, scope = GLOBAL) {
   var descriptor = Object.getOwnPropertyDescriptor(scope, name) || {
     // jest for some bad reasons runs the polyfill code multiple times. In jest
     // environment, XmlHttpRequest doesn't exist so getOwnPropertyDescriptor
@@ -72,19 +70,21 @@ function polyfillGlobal(name, newValue, scope=GLOBAL) {
   Object.defineProperty(scope, name, {...descriptor, value: newValue});
 }
 
-function setUpRedBoxErrorHandler() {
+function setUpErrorHandler() {
+  if (global.__fbDisableExceptionsManager) {
+    return;
+  }
+
+  function handleError(e, isFatal) {
+    try {
+      require('ExceptionsManager').handleException(e, isFatal);
+    } catch(ee) {
+      console.log('Failed to print error: ', ee.message);
+    }
+  }
+
   var ErrorUtils = require('ErrorUtils');
   ErrorUtils.setGlobalHandler(handleError);
-}
-
-function setUpRedBoxConsoleErrorHandler() {
-  // ExceptionsManager transitively requires Promise so we install it after
-  var ExceptionsManager = require('ExceptionsManager');
-  var Platform = require('Platform');
-  // TODO (#6925182): Enable console.error redbox on Android
-  if (__DEV__ && Platform.OS === 'ios') {
-    ExceptionsManager.installConsoleErrorReporter();
-  }
 }
 
 function setUpFlowChecker() {
@@ -154,15 +154,19 @@ function setUpGeolocation() {
   polyfillGlobal('geolocation', require('Geolocation'), GLOBAL.navigator);
 }
 
+function setUpProduct() {
+  Object.defineProperty(GLOBAL.navigator, 'product', {value: 'ReactNative'});
+}
+
+
 function setUpWebSockets() {
   polyfillGlobal('WebSocket', require('WebSocket'));
 }
 
 function setUpProfile() {
-  console.profile = console.profile || GLOBAL.nativeTraceBeginSection || function () {};
-  console.profileEnd = console.profileEnd || GLOBAL.nativeTraceEndSection || function () {};
   if (__DEV__) {
-    require('BridgeProfiling').swizzleReactPerf();
+    var BridgeProfiling = require('BridgeProfiling');
+    BridgeProfiling.swizzleReactPerf();
   }
 }
 
@@ -180,21 +184,35 @@ function setUpNumber() {
   Number.MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -(Math.pow(2, 53) - 1);
 }
 
+function setUpDevTools() {
+  // not when debugging in chrome
+  if (__DEV__) { // TODO(9123099) Strip `__DEV__ &&`
+    if (!window.document && require('Platform').OS === 'ios') {
+      var setupDevtools = require('setupDevtools');
+      setupDevtools();
+    }
+  }
+}
+
 setUpProcessEnv();
-setUpRedBoxErrorHandler();
+setUpConsole();
 setUpTimers();
 setUpAlert();
 setUpPromise();
+setUpErrorHandler();
 setUpXHR();
-setUpRedBoxConsoleErrorHandler();
 setUpGeolocation();
+setUpProduct();
 setUpWebSockets();
 setUpProfile();
 setUpFlowChecker();
 setUpNumber();
+setUpDevTools();
 
 // Just to make sure the JS gets packaged up. Wait until the JS environment has
 // been initialized before requiring them.
-require('RCTDebugComponentOwnership');
+if (__DEV__) {
+  require('RCTDebugComponentOwnership');
+}
 require('RCTDeviceEventEmitter');
 require('PerformanceLogger');

@@ -1,7 +1,7 @@
 {
   "name": "rmc-react-native",
-  "version": "0.1.0",
-  "description": "react-native SDK, 基于react-native 1.4.2",
+  "version": "0.2.0",
+  "description": "react-native SDK, 基于react-native 0.17.0",
   "author": "Swain <swainet@126.com>",
   "license": "MIT",
   "repository": {
@@ -9,8 +9,13 @@
     "url": "git@github.com:react-component/m-react-native.git"
   },
   "dependencies": {
+    "art": "^0.10.0",
+    "babel-core": "^6.1.20",
     "event-target-shim": "^1.0.5",
+    "fbjs-haste": "^0.3.4",
+    "react-haste": "^0.14.2",
     "promise": "^7.0.4",
+    "react-haste": "^0.14.2",
     "react-timer-mixin": "^0.13.2",
     "rebound": "^0.0.13",
     "regenerator": "^0.8.36",
