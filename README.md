@@ -1,6 +1,6 @@
 # react-native
 
-当前版本基于react-native 0.17.0 抽取必要的依赖SDK源码
+当前版本基于react-native 0.17.0 抽取必要的依赖SDK源码。你可以修改 `src/react-native/Libraries/react-native/react-native.js` 文件来精简最终打包后的sdk核心库文件。
 
 ## environment
 
