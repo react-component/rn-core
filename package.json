@@ -1,12 +1,12 @@
 {
-  "name": "rmc-react-native",
-  "version": "0.2.0",
-  "description": "react-native SDK, 基于react-native 0.17.0",
-  "author": "Swain <swainet@126.com>",
+  "name": "@alipay/react-native-mb",
+  "version": "0.1.0",
+  "description": "网商银行的react-native基础库",
+  "author": "丹侠 <danxia.shidx@alipay.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-component/m-react-native.git"
+    "url": "git@gitlab.alibaba-inc.com:animajs-rn/AntReactNativeJSCore.git"
   },
   "dependencies": {
     "art": "^0.10.0",
@@ -20,6 +20,10 @@
     "rebound": "^0.0.13",
     "regenerator": "^0.8.36",
     "stacktrace-parser": "^0.1.3",
-    "immutable": "^3.7.5"
+    "immutable": "^3.7.5",
+    "@alipay/AntReactNativeJSCore": "~0.1.0"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
   }
 }
