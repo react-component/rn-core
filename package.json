@@ -8,16 +8,11 @@
     "type": "git",
     "url": "git@github.com:react-component/rn-core.git"
   },
-  "scripts": {
-    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
-    "postinstall": "npm run clean:babelrc"
-  },
   "dependencies": {
     "art": "^0.10.0",
     "babel-core": "~6.4.5",
     "base64-js": "^0.0.8",
     "event-target-shim": "^1.0.5",
-    "fbjs": "^0.6.0",
     "immutable": "^3.7.5",
     "promise": "^7.1.1",
     "react": "^0.14.5",

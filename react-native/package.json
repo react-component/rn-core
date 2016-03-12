@@ -5,7 +5,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "git@github.com:facebook/react-native.git"
+    "url": "git+ssh://git@github.com/facebook/react-native.git"
   },
   "engines": {
     "node": ">=4"
@@ -228,5 +228,6 @@
     "tmp": "tmp/react-native-0.21.0.tgz_1456847563286_0.8639392114710063"
   },
   "directories": {},
-  "_resolved": "https://registry.npmjs.org/react-native/-/react-native-0.21.0.tgz"
+  "_resolved": "https://registry.npmjs.org/react-native/-/react-native-0.21.0.tgz",
+  "readme": "ERROR: No README data found!"
 }
