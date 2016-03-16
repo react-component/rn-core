@@ -1,8 +1,8 @@
-const coreBlacklist = [ 
+const coreModulesList = [ 
   'react-native',
   'EventEmitter',
   'RCTDeviceEventEmitter',
   'RCTNativeAppEventEmitter'
 ];
 
-module.exports = coreBlacklist;
+module.exports = coreModulesList;
