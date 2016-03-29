@@ -1,6 +1,6 @@
 {
   "name": "rn-core",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "react-native SDK, 基于react-native 0.21.0",
   "author": "Swain <swainet@126.com>",
   "license": "MIT",

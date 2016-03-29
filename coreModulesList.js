@@ -2,7 +2,8 @@ const coreModulesList = [
   'react-native',
   'EventEmitter',
   'RCTDeviceEventEmitter',
-  'RCTNativeAppEventEmitter'
+  'RCTNativeAppEventEmitter',
+  'react-timer-mixin'
 ];
 
 module.exports = coreModulesList;
