@@ -1,7 +1,7 @@
 {
   "name": "rn-core",
-  "version": "0.3.3",
-  "description": "react-native SDK, 基于react-native 0.21.0",
+  "version": "0.4.0",
+  "description": "react-native SDK, 基于react-native 0.25.0-rc",
   "author": "Swain <swainet@126.com>",
   "license": "MIT",
   "repository": {
@@ -10,14 +10,16 @@
   },
   "dependencies": {
     "art": "^0.10.0",
-    "babel-core": "~6.4.5",
+    "babel-core": "^6.6.4",
     "base64-js": "^0.0.8",
     "event-target-shim": "^1.0.5",
-    "immutable": "^3.7.5",
+    "fbjs": "^0.7.2",
+    "immutable": "~3.7.6",
     "promise": "^7.1.1",
     "react": "^0.14.5",
+    "react-clone-referenced-element": "^1.0.1",
     "react-timer-mixin": "^0.13.2",
-    "react-transform-hmr": "^1.0.2",
+    "react-transform-hmr": "^1.0.4",
     "rebound": "^0.0.13",
     "regenerator": "^0.8.36",
     "stacktrace-parser": "^0.1.3"

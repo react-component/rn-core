@@ -17,6 +17,7 @@ var NativeMethodsMixin = require('NativeMethodsMixin');
 var Platform = require('Platform');
 var PropTypes = require('ReactPropTypes');
 var React = require('React');
+var ReactNative = require('ReactNative');
 var ReactChildren = require('ReactChildren');
 var StyleSheet = require('StyleSheet');
 var Text = require('Text');
@@ -27,8 +28,8 @@ var UIManager = require('UIManager');
 var View = require('View');
 
 var createReactNativeComponentClass = require('createReactNativeComponentClass');
-var emptyFunction = require('emptyFunction');
-var invariant = require('invariant');
+var emptyFunction = require('fbjs/lib/emptyFunction');
+var invariant = require('fbjs/lib/invariant');
 var requireNativeComponent = require('requireNativeComponent');
 
 var onlyMultiline = {
@@ -68,7 +69,17 @@ type Event = Object;
  *   />
  * ```
  *
- * Note that some props are only available with `multiline={true/false}`:
+ * Note that some props are only available with `multiline={true/false}`.
+ * Additionally, border styles that apply to only one side of the element
+ * (e.g., `borderBottomColor`, `borderLeftWidth`, etc.) will not be applied if
+ * `multiline=false`. To achieve the same effect, you can wrap your `TextInput`
+ * in a `View`:
+ *
+ * ```
+ *  <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1, }}>
+ *    <TextInput {...props} />
+ *  </View>
+ * ```
  */
 var TextInput = React.createClass({
   statics: {
@@ -274,7 +285,6 @@ var TextInput = React.createClass({
     clearTextOnFocus: PropTypes.bool,
     /**
      * If true, all text will automatically be selected on focus
-     * @platform ios
      */
     selectTextOnFocus: PropTypes.bool,
     /**
@@ -283,7 +293,6 @@ var TextInput = React.createClass({
      * multiline fields. Note that for multiline fields, setting blurOnSubmit
      * to true means that pressing return will blur the field and trigger the
      * onSubmitEditing event instead of inserting a newline into the field.
-     * @platform ios
      */
     blurOnSubmit: PropTypes.bool,
     /**
@@ -310,9 +319,12 @@ var TextInput = React.createClass({
         AndroidTextInput.viewConfig :
         {})) : Object),
 
+  /**
+   * Returns if the input is currently focused.
+   */
   isFocused: function(): boolean {
     return TextInputState.currentlyFocusedField() ===
-      React.findNodeHandle(this.refs.input);
+      ReactNative.findNodeHandle(this.refs.input);
   },
 
   contextTypes: {
@@ -359,6 +371,9 @@ var TextInput = React.createClass({
     isInAParentText: React.PropTypes.bool
   },
 
+  /**
+   * Removes all text from the input.
+   */
   clear: function() {
     this.setNativeProps({text: ''});
   },
@@ -505,6 +520,7 @@ var TextInput = React.createClass({
         onTextInput={this._onTextInput}
         onEndEditing={this.props.onEndEditing}
         onSubmitEditing={this.props.onSubmitEditing}
+        blurOnSubmit={this.props.blurOnSubmit}
         onLayout={this.props.onLayout}
         password={this.props.password || this.props.secureTextEntry}
         placeholder={this.props.placeholder}
@@ -514,6 +530,7 @@ var TextInput = React.createClass({
         underlineColorAndroid={this.props.underlineColorAndroid}
         children={children}
         editable={this.props.editable}
+        selectTextOnFocus={this.props.selectTextOnFocus}
       />;
 
     return (
