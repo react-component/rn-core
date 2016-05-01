@@ -1,6 +1,6 @@
 {
   "name": "rn-core",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "react-native SDK, 基于react-native 0.25.0-rc",
   "author": "Swain <swainet@126.com>",
   "license": "MIT",
@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "art": "^0.10.0",
-    "babel-core": "^6.6.4",
     "base64-js": "^0.0.8",
     "event-target-shim": "^1.0.5",
     "fbjs": "^0.7.2",
