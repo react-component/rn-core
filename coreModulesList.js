@@ -132,6 +132,7 @@ const coreModulesList = [
   "ReactCurrentOwner",
   "ReactDefaultBatchingStrategy",
   "ReactDefaultPerf",
+  "ReactElement",
   "ReactElementValidator",
   "ReactEventEmitterMixin",
   "ReactFragment",
