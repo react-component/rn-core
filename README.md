@@ -1,8 +1,10 @@
-# react-native
+# react-native core
 
-当前版本基于react-native 0.21.0 抽取前端基础框架源码。
+---
 
-## environment
+Standalone ReactNative Framework without Packager.
 
 ![node.js](https://img.shields.io/badge/node.js-%3E=_4.0.0-green.svg?style=flat-square)
 ![react-native](https://img.shields.io/badge/react--native-%3D_0.21.0-green.svg)
+
+used with https://github.com/react-component/rn-packager
