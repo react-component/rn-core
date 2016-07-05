@@ -12,10 +12,13 @@
 'use strict';
 
 const Map = require('Map');
+const NativeEventEmitter = require('NativeEventEmitter');
 const NativeModules = require('NativeModules');
 const Platform = require('Platform');
-const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 const RCTNetInfo = NativeModules.NetInfo;
+const deprecatedCallback = require('deprecatedCallback');
+
+const NetInfoEventEmitter = new NativeEventEmitter(RCTNetInfo);
 
 const DEVICE_CONNECTIVITY_EVENT = 'networkStatusDidChange';
 
@@ -135,8 +138,12 @@ const _isConnectedSubscriptions = new Map();
  * monetary costs, data limitations or battery/performance issues.
  *
  * ```
- * NetInfo.isConnectionExpensive((isConnectionExpensive) => {
+ * NetInfo.isConnectionExpensive()
+ * .then(isConnectionExpensive => {
  *   console.log('Connection is ' + (isConnectionExpensive ? 'Expensive' : 'Not Expensive'));
+ * })
+ * .catch(error => {
+ *   console.error(error);
  * });
  * ```
  *
@@ -146,7 +153,7 @@ const _isConnectedSubscriptions = new Map();
  * internet connectivity.
  *
  * ```
- * NetInfo.isConnected.fetch().done((isConnected) => {
+ * NetInfo.isConnected.fetch().then(isConnected => {
  *   console.log('First, is ' + (isConnected ? 'online' : 'offline'));
  * });
  * function handleFirstConnectivityChange(isConnected) {
@@ -163,11 +170,15 @@ const _isConnectedSubscriptions = new Map();
  * ```
  */
 const NetInfo = {
+  /**
+   * Invokes the listener whenever network status changes.
+   * The listener receives one of the connectivity types listed above.
+   */
   addEventListener(
     eventName: ChangeEventName,
     handler: Function
   ): {remove: () => void} {
-    const listener = RCTDeviceEventEmitter.addListener(
+    const listener = NetInfoEventEmitter.addListener(
       DEVICE_CONNECTIVITY_EVENT,
       (appStateData) => {
         handler(appStateData.network_info);
@@ -179,6 +190,9 @@ const NetInfo = {
     };
   },
 
+  /**
+   * Removes the listener for network status changes.
+   */
   removeEventListener(
     eventName: ChangeEventName,
     handler: Function
@@ -191,17 +205,20 @@ const NetInfo = {
     _subscriptions.delete(handler);
   },
 
-  fetch(): Promise {
-    return new Promise((resolve, reject) => {
-      RCTNetInfo.getCurrentConnectivity(
-        function(resp) {
-          resolve(resp.network_info);
-        },
-        reject
-      );
-    });
+  /**
+   * Returns a promise that resolves with one of the connectivity types listed
+   * above.
+   */
+  fetch(): Promise<any> {
+    return RCTNetInfo.getCurrentConnectivity().then(resp => resp.network_info);
   },
 
+  /**
+   * An object with the same methods as above but the listener receives a
+   * boolean which represents the internet connectivity.
+   * Use this if you are only interested with whether the device has internet
+   * connectivity.
+   */
   isConnected: {
     addEventListener(
       eventName: ChangeEventName,
@@ -224,6 +241,7 @@ const NetInfo = {
       eventName: ChangeEventName,
       handler: Function
     ): void {
+      /* $FlowFixMe */
       const listener = _isConnectedSubscriptions.get(handler);
       NetInfo.removeEventListener(
         eventName,
@@ -232,22 +250,20 @@ const NetInfo = {
       _isConnectedSubscriptions.delete(handler);
     },
 
-    fetch(): Promise {
+    fetch(): Promise<any> {
       return NetInfo.fetch().then(
         (connection) => _isConnected(connection)
       );
     },
   },
 
-  isConnectionExpensive(callback: (metered: ?boolean, error?: string) => void): void {
-    if (Platform.OS === 'android') {
-      RCTNetInfo.isConnectionMetered((_isMetered) => {
-        callback(_isMetered);
-      });
-    } else {
-      // TODO t9296080 consider polyfill and more features later on
-      callback(null, "Unsupported");
-    }
+  isConnectionExpensive(): Promise<any> {
+    return deprecatedCallback(
+      Platform.OS === 'android' ? RCTNetInfo.isConnectionMetered() : Promise.reject(new Error('Currently not supported on iOS')),
+      Array.prototype.slice.call(arguments),
+      'single-callback-value-first',
+      'NetInfo.isConnectionMetered(callback) is deprecated. Use the returned Promise instead.'
+    );
   },
 };
 

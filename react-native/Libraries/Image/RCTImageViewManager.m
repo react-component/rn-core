@@ -25,6 +25,7 @@ RCT_EXPORT_MODULE()
   return [[RCTImageView alloc] initWithBridge:self.bridge];
 }
 
+RCT_EXPORT_VIEW_PROPERTY(blurRadius, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(capInsets, UIEdgeInsets)
 RCT_REMAP_VIEW_PROPERTY(defaultSource, defaultImage, UIImage)
 RCT_EXPORT_VIEW_PROPERTY(onLoadStart, RCTDirectEventBlock)
@@ -47,7 +48,7 @@ RCT_EXPORT_METHOD(getSize:(NSURL *)imageURL
                   successBlock:(RCTResponseSenderBlock)successBlock
                   errorBlock:(RCTResponseErrorBlock)errorBlock)
 {
-  [self.bridge.imageLoader getImageSize:imageURL.absoluteString
+  [self.bridge.imageLoader getImageSizeForURLRequest:[NSURLRequest requestWithURL:imageURL]
                                   block:^(NSError *error, CGSize size) {
                                     if (error) {
                                       errorBlock(error);
