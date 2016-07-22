@@ -15,9 +15,9 @@ const EdgeInsetsPropType = require('EdgeInsetsPropType');
 const ImageResizeMode = require('ImageResizeMode');
 const ImageSourcePropType = require('ImageSourcePropType');
 const ImageStylePropTypes = require('ImageStylePropTypes');
-const NativeMethodsMixin = require('NativeMethodsMixin');
+const NativeMethodsMixin = require('react/lib/NativeMethodsMixin');
 const NativeModules = require('NativeModules');
-const PropTypes = require('ReactPropTypes');
+const PropTypes = require('react/lib/ReactPropTypes');
 const React = require('React');
 const ReactNativeViewAttributes = require('ReactNativeViewAttributes');
 const StyleSheet = require('StyleSheet');
@@ -173,7 +173,7 @@ const Image = React.createClass({
      * - `repeat`: Repeat the image to cover the frame of the view. The
      * image will keep it's size and aspect ratio. (iOS only)
      */
-    resizeMode: PropTypes.oneOf(['cover', 'contain', 'stretch']),
+    resizeMode: PropTypes.oneOf(['cover', 'contain', 'stretch', 'repeat']),
     /**
      * A unique identifier for this element to be used in UI Automation
      * testing scripts.

@@ -11,34 +11,30 @@
  */
 'use strict';
 
-var DocumentSelectionState = require('DocumentSelectionState');
-var EventEmitter = require('EventEmitter');
-var NativeMethodsMixin = require('NativeMethodsMixin');
-var Platform = require('Platform');
-var PropTypes = require('ReactPropTypes');
-var React = require('React');
-var ReactNative = require('ReactNative');
-var ReactChildren = require('ReactChildren');
-var StyleSheet = require('StyleSheet');
-var Text = require('Text');
-var TextInputState = require('TextInputState');
-var TimerMixin = require('react-timer-mixin');
-var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
-var UIManager = require('UIManager');
-var View = require('View');
+const ColorPropType = require('ColorPropType');
+const DocumentSelectionState = require('DocumentSelectionState');
+const EventEmitter = require('EventEmitter');
+const NativeMethodsMixin = require('react/lib/NativeMethodsMixin');
+const Platform = require('Platform');
+const PropTypes = require('react/lib/ReactPropTypes');
+const React = require('React');
+const ReactNative = require('react/lib/ReactNative');
+const ReactChildren = require('react/lib/ReactChildren');
+const StyleSheet = require('StyleSheet');
+const Text = require('Text');
+const TextInputState = require('TextInputState');
+const TimerMixin = require('react-timer-mixin');
+const TouchableWithoutFeedback = require('TouchableWithoutFeedback');
+const UIManager = require('UIManager');
+const View = require('View');
 
-var createReactNativeComponentClass = require('createReactNativeComponentClass');
-var emptyFunction = require('fbjs/lib/emptyFunction');
-var invariant = require('fbjs/lib/invariant');
-var requireNativeComponent = require('requireNativeComponent');
+const emptyFunction = require('fbjs/lib/emptyFunction');
+const invariant = require('fbjs/lib/invariant');
+const requireNativeComponent = require('requireNativeComponent');
 
-var onlyMultiline = {
-  onTextInput: true, // not supported in Open Source yet
+const onlyMultiline = {
+  onTextInput: true,
   children: true,
-};
-
-var notMultiline = {
-  // nothing yet
 };
 
 if (Platform.OS === 'android') {
@@ -151,7 +147,7 @@ type Event = Object;
  * `underlineColorAndroid` to transparent.
  *
  */
-var TextInput = React.createClass({
+const TextInput = React.createClass({
   statics: {
     /* TODO(brentvatne) docs are needed for this */
     State: TextInputState,
@@ -194,6 +190,7 @@ var TextInput = React.createClass({
      * - `default`
      * - `numeric`
      * - `email-address`
+     * - `phone-pad`
      */
     keyboardType: PropTypes.oneOf([
       // Cross-platform
@@ -345,7 +342,7 @@ var TextInput = React.createClass({
     /**
      * The text color of the placeholder string.
      */
-    placeholderTextColor: PropTypes.string,
+    placeholderTextColor: ColorPropType,
     /**
      * If `true`, the text input obscures the text entered so that sensitive text
      * like passwords stay secure. The default value is `false`.
@@ -354,7 +351,7 @@ var TextInput = React.createClass({
     /**
     * The highlight (and cursor on iOS) color of the text input.
     */
-    selectionColor: PropTypes.string,
+    selectionColor: ColorPropType,
     /**
      * An instance of `DocumentSelectionState`, this is some state that is responsible for
      * maintaining selection information for a document.
@@ -422,7 +419,19 @@ var TextInput = React.createClass({
      * The color of the `TextInput` underline.
      * @platform android
      */
-    underlineColorAndroid: PropTypes.string,
+    underlineColorAndroid: ColorPropType,
+
+    /**
+     * If defined, the provided image resource will be rendered on the left.
+     * @platform android
+     */
+    inlineImageLeft: PropTypes.string,
+
+    /**
+     * Padding between the inline image, if any, and the text input itself.
+     * @platform android
+     */
+    inlineImagePadding: PropTypes.number,
   },
 
   /**
@@ -530,11 +539,13 @@ var TextInput = React.createClass({
     var props = Object.assign({}, this.props);
     props.style = [styles.input, this.props.style];
     if (!props.multiline) {
-      for (var propKey in onlyMultiline) {
-        if (props[propKey]) {
-          throw new Error(
-            'TextInput prop `' + propKey + '` is only supported with multiline.'
-          );
+      if (__DEV__) {
+        for (var propKey in onlyMultiline) {
+          if (props[propKey]) {
+            throw new Error(
+              'TextInput prop `' + propKey + '` is only supported with multiline.'
+            );
+          }
         }
       }
       textContainer =
@@ -549,14 +560,6 @@ var TextInput = React.createClass({
           text={this._getText()}
         />;
     } else {
-      for (var propKey in notMultiline) {
-        if (props[propKey]) {
-          throw new Error(
-            'TextInput prop `' + propKey + '` cannot be used with multiline.'
-          );
-        }
-      }
-
       var children = props.children;
       var childCount = 0;
       ReactChildren.forEach(children, () => ++childCount);
@@ -650,6 +653,8 @@ var TextInput = React.createClass({
         selectionColor={this.props.selectionColor}
         text={this._getText()}
         underlineColorAndroid={this.props.underlineColorAndroid}
+        inlineImageLeft={this.props.inlineImageLeft}
+        inlineImagePadding={this.props.inlineImagePadding}
         children={children}
         editable={this.props.editable}
         selectTextOnFocus={this.props.selectTextOnFocus}
