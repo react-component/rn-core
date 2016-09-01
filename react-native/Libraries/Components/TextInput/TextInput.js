@@ -27,6 +27,7 @@ const TimerMixin = require('react-timer-mixin');
 const TouchableWithoutFeedback = require('TouchableWithoutFeedback');
 const UIManager = require('UIManager');
 const View = require('View');
+const warning = require('fbjs/lib/warning');
 
 const emptyFunction = require('fbjs/lib/emptyFunction');
 const invariant = require('fbjs/lib/invariant');
@@ -45,6 +46,15 @@ if (Platform.OS === 'android') {
 }
 
 type Event = Object;
+
+const DataDetectorTypes = [
+  'phoneNumber',
+  'link',
+  'address',
+  'calendarEvent',
+  'none',
+  'all',
+];
 
 /**
  * A foundational component for inputting text into the app via a
@@ -271,7 +281,7 @@ const TextInput = React.createClass({
      * Sets the return key to the label. Use it instead of `returnKeyType`.
      * @platform android
      */
-     returnKeyLabel: PropTypes.string,
+    returnKeyLabel: PropTypes.string,
     /**
      * Limits the maximum number of characters that can be entered. Use this
      * instead of implementing the logic in JS to avoid flicker.
@@ -311,6 +321,14 @@ const TextInput = React.createClass({
      * Changed text is passed as an argument to the callback handler.
      */
     onChangeText: PropTypes.func,
+    /**
+     * Callback that is called when the text input's content size changes.
+     * This will be called with
+     * `{ nativeEvent: { contentSize: { width, height } } }`.
+     *
+     * Only called for multiline text inputs.
+     */
+    onContentSizeChange: PropTypes.func,
     /**
      * Callback that is called when text input ends.
      */
@@ -432,6 +450,29 @@ const TextInput = React.createClass({
      * @platform android
      */
     inlineImagePadding: PropTypes.number,
+
+    /**
+     * Determines the types of data converted to clickable URLs in the text input.
+     * Only valid if `multiline={true}` and `editable={false}`.
+     * By default no data types are detected.
+     *
+     * You can provide one type or an array of many types.
+     *
+     * Possible values for `dataDetectorTypes` are:
+     *
+     * - `'phoneNumber'`
+     * - `'link'`
+     * - `'address'`
+     * - `'calendarEvent'`
+     * - `'none'`
+     * - `'all'`
+     *
+     * @platform ios
+     */
+    dataDetectorTypes: PropTypes.oneOfType([
+      PropTypes.oneOf(DataDetectorTypes),
+      PropTypes.arrayOf(PropTypes.oneOf(DataDetectorTypes)),
+    ]),
   },
 
   /**
@@ -542,9 +583,10 @@ const TextInput = React.createClass({
       if (__DEV__) {
         for (var propKey in onlyMultiline) {
           if (props[propKey]) {
-            throw new Error(
+            const error = new Error(
               'TextInput prop `' + propKey + '` is only supported with multiline.'
             );
+            warning(false, '%s', error.stack);
           }
         }
       }
@@ -581,10 +623,12 @@ const TextInput = React.createClass({
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onChange={this._onChange}
+          onContentSizeChange={this.props.onContentSizeChange}
           onSelectionChange={onSelectionChange}
           onTextInput={this._onTextInput}
           onSelectionChangeShouldSetResponder={emptyFunction.thatReturnsTrue}
           text={this._getText()}
+          dataDetectorTypes={this.props.dataDetectorTypes}
         />;
     }
 
@@ -641,12 +685,12 @@ const TextInput = React.createClass({
         onFocus={this._onFocus}
         onBlur={this._onBlur}
         onChange={this._onChange}
+        onContentSizeChange={this.props.onContentSizeChange}
         onSelectionChange={onSelectionChange}
         onTextInput={this._onTextInput}
         onEndEditing={this.props.onEndEditing}
         onSubmitEditing={this.props.onSubmitEditing}
         blurOnSubmit={this.props.blurOnSubmit}
-        onLayout={this.props.onLayout}
         placeholder={this.props.placeholder}
         placeholderTextColor={this.props.placeholderTextColor}
         secureTextEntry={this.props.secureTextEntry}
@@ -664,6 +708,7 @@ const TextInput = React.createClass({
 
     return (
       <TouchableWithoutFeedback
+        onLayout={this.props.onLayout}
         onPress={this._onPress}
         accessible={this.props.accessible}
         accessibilityLabel={this.props.accessibilityLabel}
